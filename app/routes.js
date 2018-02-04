@@ -4,4 +4,7 @@ const express       = require('express'),
   eventsController  = require('./controllers/events.controller');
 
 
+router.get('/',      mainController.showHome);
+
+
 module.exports = router;
