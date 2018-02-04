@@ -5,6 +5,7 @@ const express       = require('express'),
 
 
 router.get('/',      mainController.showHome);
+router.get('/new/*', eventsController.showUrl);
 
 
 module.exports = router;
