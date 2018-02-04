@@ -1,0 +1,33 @@
+{
+  "name": "url-shortener-ms",
+  "version": "1.0.0",
+  "description": "An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.",
+  "main": "server.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.0",
+    "connect-flash": "^0.1.1",
+    "body-parser": "^1.18.2",
+    "express-session": "^1.15.6",
+    "express-ejs-layouts": "^2.3.1",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "mongoose": "^5.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Answart/url-shortener-ms.git"
+  },
+  "author": "Alexandra Swart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Answart/url-shortener-ms/issues"
+  },
+  "homepage": "https://github.com/Answart/url-shortener-ms#readme"
+}
