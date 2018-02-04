@@ -3,6 +3,10 @@
 var request = require("request");
 
 
+function isAppUrl(urlStr) {
+  return urlStr.includes(process.env.APP_URL);
+}
+
 function isValidUrl(urlStr, cb) {
   if (!regexUrl(urlStr)) { return cb(`'${urlStr}' is not a valid url.`, null) };
 
