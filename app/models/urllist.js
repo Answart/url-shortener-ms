@@ -4,6 +4,14 @@ const mongoose = require('mongoose'),
 const urlListSchema = new Schema({
   original_url: String,
   short_url: String
+}, {
+  toJSON: {
+    transform: function (doc, ret, options) {
+      delete ret._id;
+      delete ret.__v;
+      return ret;
+    }
+  }
 });
 
 const urlListModel = mongoose.model('UrlList', urlListSchema);

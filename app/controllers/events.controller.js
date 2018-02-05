@@ -2,13 +2,6 @@ const UrlList   = require('../models/urllist');
 const urlHelper = require('../helpers/url.helper');
 
 
-function parseDoc(urlList) {
-  return {
-    original_url: urlList.original_url,
-    short_url: urlList.short_url
-  };
-}
-
 function createShortUrl(url, cb) {
   var urlList = new UrlList({
     original_url: url
@@ -17,7 +10,7 @@ function createShortUrl(url, cb) {
   urlList.save((err, urlList) => {
     if (err) { throw err };
 
-    cb(null, parseDoc(urlList));
+    cb(null, urlList);
   })
 }
 
@@ -48,7 +41,6 @@ module.exports = {
       UrlList.findOne({ short_url: paramUrl }, (err, urlList) => {
         if (err) { throw err };
         if (urlList) {
-
           res.redirect(urlList.original_url);
         } else {
           returnHome(`'${paramUrl}' is not a valid shortened url. Try again.`)
@@ -63,12 +55,12 @@ module.exports = {
             if (err) { throw err };
             if (urlList) {
 
-              res.json(parseDoc(urlList));
+              res.json(urlList.toJSON());
             } else {
               createShortUrl(url, (err, doc) => {
                 if (err) { throw err };
 
-                res.json(doc);
+                res.json(doc.toJSON());
               })
             }
           })
