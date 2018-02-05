@@ -4,16 +4,17 @@
   "description": "An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.0",
-    "connect-flash": "^0.1.1",
-    "body-parser": "^1.18.2",
-    "express-session": "^1.15.6",
-    "express-ejs-layouts": "^2.3.1",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "request": "^2.83.0",
-    "mongoose": "^5.0.3"
+    "express-ejs-layouts": "^2.3.1",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.0.3",
+    "request": "^2.83.0"
   },
   "devDependencies": {},
   "scripts": {
