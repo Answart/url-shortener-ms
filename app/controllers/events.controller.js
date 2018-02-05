@@ -21,34 +21,43 @@ function createShortUrl(url, cb) {
   })
 }
 
+function show404(req, res) {
+  req.flash('errors', 'The route you entered does not exist.');
+
+  res.render('pages/home', {
+    errors: req.flash('errors')
+  });
+}
+
 
 module.exports = {
+  show404: show404,
   showUrl: (req, res) => {
     var paramUrl = req.params['0'];
+    var isAppsShortenedUrl = urlHelper.isAppUrl(paramUrl);
 
-    urlHelper.isValidUrl(paramUrl, (err, url) => {
-      if (err) {
-        req.flash('errors', err);
+    function returnHome(err) {
+      req.flash('errors', err);
 
-        res.render('pages/home', {
-          errors: req.flash('errors')
-        });
-      } else {
-        var isAppsShortenedUrl = urlHelper.isAppUrl(url);
-        if (isAppsShortenedUrl) {
-          UrlList.findOne({ short_url: url }, (err, urlList) => {
-            if (err) { throw err };
-            if (urlList) {
+      res.render('pages/home', {
+        errors: req.flash('errors')
+      });
+    }
 
-              res.redirect(urlList.original_url);
-            } else {
-              req.flash('errors', `'${url}' is not a valid shortened url. Try again.`);
+    if (isAppsShortenedUrl) {
+      UrlList.findOne({ short_url: paramUrl }, (err, urlList) => {
+        if (err) { throw err };
+        if (urlList) {
 
-              res.render('pages/home', {
-                errors: req.flash('errors')
-              });
-            }
-          })
+          res.redirect(urlList.original_url);
+        } else {
+          returnHome(`'${paramUrl}' is not a valid shortened url. Try again.`)
+        }
+      })
+    } else {
+      urlHelper.isValidUrl(paramUrl, (err, url) => {
+        if (err) {
+          returnHome(err);
         } else {
           UrlList.findOne({ original_url: url }, (err, urlList) => {
             if (err) { throw err };
@@ -64,8 +73,8 @@ module.exports = {
             }
           })
         }
-      }
-    });
+      })
+    }
   }
 
 };

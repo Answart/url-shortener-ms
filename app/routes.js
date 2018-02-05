@@ -8,4 +8,7 @@ router.get('/',      mainController.showHome);
 router.get('/new/*', eventsController.showUrl);
 
 
+router.get('*',      eventsController.show404);
+
+
 module.exports = router;
