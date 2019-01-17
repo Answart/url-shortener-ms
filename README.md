@@ -3,7 +3,10 @@
 An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.
 
 ```
-{ "original_url":	"https://www.google.com", "short_url": "https://answart-url-shortener-ms.herokuapp.com/1059" }
+{
+  "original_url":	"https://www.google.com",
+  "short_url": "https://answart-url-shortener-ms.herokuapp.com/1059"
+}
 ```
 
 User Stories
