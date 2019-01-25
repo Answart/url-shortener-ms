@@ -14,7 +14,7 @@ const express    = require('express'),
   flash          = require('connect-flash');
 
 
-mongoose.connect(process.env.DB_URI);
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
 mongoose.connection.on('error', function(err) {
     console.error('MongoDB connection error: ' + err);
     process.exit(-1);
