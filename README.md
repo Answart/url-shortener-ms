@@ -1,8 +1,13 @@
-# url-shortener-ms AKA URL Shortener Micro-service
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/4269260/51730515-a1fef000-202c-11e9-8765-4250c664555c.png" height="250" width="350">
+  <img src="https://user-images.githubusercontent.com/4269260/51730517-a3301d00-202c-11e9-8cc7-4d7033abd18c.png" height="250" width="350">
+</p>
+
+# URL Shortener Micro-service
 
 An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.
 
-```
+```shell
 {
   "original_url":	"https://www.google.com",
   "short_url": "https://answart-url-shortener-ms.herokuapp.com/1059"
@@ -38,7 +43,7 @@ Create your own server. I used mLab.com.
 Create a user on that server.
 
 Create your own .env file in the root directory with a DB_URI which links to your server. Here is an example:
-```
+```shell
 PORT=8000
 DB_URI="mongodb://<dbuser>:<dbpassword>@ds223738.mlab.com:23738/answart-url-shortener-ms"
 SECRET="my-super-secret"
@@ -46,9 +51,9 @@ APP_URL="http://answart-url-shortener-ms.herokuapp.com"
 ```
 
 Install dependencies then launch app @ [http://localhost:8000](http://localhost:8000)
-```
+```shell
 $ npm install
-$ node server.js
+$ npm start
 ```
 
 Example routes:
@@ -70,6 +75,6 @@ NPM Commands
 ------------
 
 | Command | Description |
-|---------|-------------|
-|npm install|Install dependencies in package.json|
-|node server.js|Start server port @ **localhost:8000**|
+| ------- | ----------- |
+| npm install | Install dependencies in package.json |
+| npm start | Start server @ **localhost:8000** |
