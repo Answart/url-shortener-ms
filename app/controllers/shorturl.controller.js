@@ -34,6 +34,9 @@ function createShortUrl(req, res) {
     });
   }
 
+  if (!original_url) {
+    resError(`Unable to parse url.`);
+  }
   if (!validUrl) {
     resError(`Given url '${original_url}' is not a valid url to shorten.`);
   }
@@ -82,6 +85,9 @@ function getShortUrl(req, res) {
     });
   }
 
+  if (!short_url) {
+    resError(`Unable to parse url.`);
+  }
   if (!validShortUrl) {
     resError(`Given url '${short_url}' was not created here. Unknown route`);
   }
