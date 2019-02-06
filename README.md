@@ -1,9 +1,19 @@
+[travis]: https://travis-ci.org/Answart/url-shortener-ms
+[dependency]: https://david-dm.org/Answart/url-shortener-ms
+[snyk]: https://snyk.io/test/github/Answart/url-shortener-ms
+[MIT]: https://github.com/Answart/url-shortener-ms/blob/master/LICENSE.md
+
 <p align="center">
   <img src="https://user-images.githubusercontent.com/4269260/51730515-a1fef000-202c-11e9-8765-4250c664555c.png" height="250" width="350">
   <img src="https://user-images.githubusercontent.com/4269260/51730517-a3301d00-202c-11e9-8cc7-4d7033abd18c.png" height="250" width="350">
 </p>
 
 # URL Shortener Micro-service
+
+[![Build Status](https://travis-ci.org/Answart/url-shortener-ms.svg?branch=master)][travis]
+[![dependencies Status](https://david-dm.org/Answart/url-shortener-ms/status.svg)][dependency]
+[![Known Vulnerabilities](https://snyk.io/test/github/Answart/url-shortener-ms/badge.svg)][snyk]
+[![MIT](https://img.shields.io/github/license/Answart/url-shortener-ms.svg)][MIT]
 
 An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.
 
