@@ -4,8 +4,8 @@
 [MIT]: https://github.com/Answart/url-shortener-ms/blob/master/LICENSE.md
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/4269260/51730515-a1fef000-202c-11e9-8765-4250c664555c.png" height="250" width="350">
-  <img src="https://user-images.githubusercontent.com/4269260/51730517-a3301d00-202c-11e9-8cc7-4d7033abd18c.png" height="250" width="350">
+  <img src="https://user-images.githubusercontent.com/4269260/52347547-0a5bb300-29d7-11e9-836b-be7378cdbbd9.png" height="250" width="350">
+  <img src="https://user-images.githubusercontent.com/4269260/52347549-0b8ce000-29d7-11e9-9cec-4187d7b531cf.png" height="250" width="350">
 </p>
 
 # URL Shortener Micro-service
