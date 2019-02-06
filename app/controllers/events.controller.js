@@ -1,6 +1,5 @@
 const { ShortUrl } = require('../models');
-const urlHelper = require('../helpers/url.helper');
-const { isValidUrl } = require('../utils');
+const { isValidShortUrl, isValidUrl } = require('../utils');
 
 
 function createShortUrl(original_url, cb) {
@@ -19,7 +18,7 @@ function createShortUrl(original_url, cb) {
 module.exports = {
   showUrl: (req, res) => {
     var url = req.params['0'];
-    var isAppsShortenedUrl = urlHelper.isAppUrl(url);
+    var isAppsShortenedUrl = isValidShortUrl(url);
     var validUrl = isValidUrl(url);
 
     function returnHome(err) {
