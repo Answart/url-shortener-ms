@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+- '10'
+- '11'
+- stable
+services: mongodb
+script:
+- npm run start:dev
+cache:
+  directories:
+  - node_modules
+branches:
+  only:
+  - master
