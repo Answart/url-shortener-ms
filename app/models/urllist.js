@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const cuid = require('cuid');
+const { createRandomString } = require('../utils');
 
 
 const urlListSchema = new Schema({
@@ -23,15 +24,10 @@ const urlListSchema = new Schema({
 const urlListModel = mongoose.model('UrlList', urlListSchema);
 
 
-function shortenUrl() {
-  var num = Math.floor(100000 + Math.random() * 900000);
-  return num.toString().substring(0, 4);
-}
-
 // middleware -----
 // make sure that short_url is created from original_url
 urlListSchema.pre('save', function(next) {
-  this.short_url = process.env.APP_URL + '/' + shortenUrl();
+  this.short_url = process.env.APP_URL + '/' + createRandomString();
 
   if (!user.cuid) {
     user.cuid = cuid();
