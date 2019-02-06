@@ -1,4 +1,4 @@
-const ShortUrl = require('./ShortUrl');
+const ShortUrl = require('./shortUrl');
 
 
 module.exports = {
