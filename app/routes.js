@@ -1,8 +1,10 @@
+const { MainController, EventsController } = require('./controllers');
 const express = require('express');
 const router = express.Router();
-const mainController = require('./controllers/main.controller');
-const eventsController = require('./controllers/events.controller');
 
+router.get('/',      MainController.showHome);
+router.get('/new/*', EventsController.showUrl);
+router.get('*',      EventsController.show404);
 
 router.get('/',      mainController.showHome);
 router.get('/new/*', eventsController.showUrl);
