@@ -5,7 +5,7 @@ node_js:
 - stable
 services: mongodb
 script:
-- npm run start:dev
+- npm run lint
 cache:
   directories:
   - node_modules
