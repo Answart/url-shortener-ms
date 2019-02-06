@@ -8,12 +8,12 @@ const express    = require('express'),
   expressLayouts = require('express-ejs-layouts'),
   bodyParser     = require('body-parser'),
   session        = require('express-session'),
-  MongoStore     = require('connect-mongo')(session),
   cookieParser   = require('cookie-parser'),
   flash          = require('connect-flash');
 
 
 const db = require('./app/db')(process.env.MONGODB_URI);
+const store = require('./app/store')(db.connection);
 
 app.set('trust proxy', 1);
 // Set sessions and cookie parser
@@ -23,7 +23,7 @@ app.use(session({
   cookie: { maxAge: 6000 },
   resave: false, // forces session to be saved to store
   saveUninitialized: false, // dont save unmodified
-  store: new MongoStore({ mongooseConnection: db.connection })
+  store
 }));
 app.use(function(req,res,next){
   if(!req.session){
