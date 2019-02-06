@@ -12,6 +12,7 @@ function createShortUrl(req, res) {
     console.error(message);
     res.statusMessage = message;
     res.status(400).render('pages/home', {
+      info: {},
       errors: req.flash('errors'),
     });
   }

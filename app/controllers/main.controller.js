@@ -1,5 +1,8 @@
 function showHome(req, res) {
-  res.render('pages/home', { errors: [] });
+  res.render('pages/home', {
+    errors: [],
+    info: {},
+  });
 }
 
 function show404(req, res) {
@@ -7,6 +10,7 @@ function show404(req, res) {
 
   res.status(404).render('pages/home', {
     errors: req.flash('errors'),
+    info: {},
   });
 }
 
