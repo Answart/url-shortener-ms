@@ -56,7 +56,7 @@ function createShortUrl(req, res) {
       myShortUrl.save((saveErr, createdUrl) => {
         if (saveErr) {
           resError(`An error occured while saving new shortUrl from '${original_url}'. Error: ${saveErr}`);
-        } else if (!createdUrl) {
+        } else if (!createdUrl || !createdUrl.short_url) {
           resError(`An error occured while creating shortUrl from '${original_url}'.`);
         } else {
           resJson({
