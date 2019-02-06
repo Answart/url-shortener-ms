@@ -4,7 +4,7 @@ const cuid = require('cuid');
 const { createRandomString } = require('../utils');
 
 
-const urlListSchema = new Schema({
+const shortUrlSchema = new Schema({
   cuid:             { type: String, default: cuid(), required: true },
 
   original_url:     { type: String, required: true },
@@ -23,8 +23,8 @@ const urlListSchema = new Schema({
 
 // The pre-save hook method
 // TODO: make sure that short_url is created from original_url
-urlListSchema.pre('save', function(next) {
-  this.short_url = process.env.APP_URL + '/' + createRandomString();
+shortUrlSchema.pre('save', function(next) {
+  this.short_url = process.env.PUBLIC_URL + '/s/' + createRandomString();
 
   if (!user.cuid) {
     user.cuid = cuid();
@@ -34,4 +34,4 @@ urlListSchema.pre('save', function(next) {
 });
 
 
-module.exports = mongoose.model('UrlList', urlListSchema);
+module.exports = mongoose.model('ShortUrl', shortUrlSchema);

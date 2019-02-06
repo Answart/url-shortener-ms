@@ -1,16 +1,16 @@
-const UrlList   = require('../models/urllist');
+const ShortUrl = require('../models/shortUrl');
 const urlHelper = require('../helpers/url.helper');
 
 
-function createShortUrl(url, cb) {
-  var urlList = new UrlList({
-    original_url: url
+function createShortUrl(original_url, cb) {
+  var shortUrl = new ShortUrl({
+    original_url
   })
 
-  urlList.save((err, urlList) => {
+  shortUrl.save((err, urlDoc) => {
     if (err) { throw err };
 
-    cb(null, urlList);
+    cb(null, urlDoc);
   })
 }
 
@@ -30,10 +30,10 @@ module.exports = {
     }
 
     if (isAppsShortenedUrl) {
-      UrlList.findOne({ short_url: url }, (err, urlList) => {
+      ShortUrl.findOne({ short_url: url }, (err, urlDoc) => {
         if (err) { throw err };
-        if (urlList) {
-          res.redirect(urlList.original_url);
+        if (urlDoc) {
+          res.redirect(urlDoc.original_url);
         } else {
           returnHome(`'${url}' is not a valid shortened url. Try again.`)
         }
@@ -42,11 +42,11 @@ module.exports = {
       if (!isValidUrl) {
         returnHome(`'${url}' is not a valid url. Try again.`)
       } else {
-        UrlList.findOne({ original_url: url }, (err, urlList) => {
+        ShortUrl.findOne({ original_url: url }, (err, urlDoc) => {
           if (err) { throw err };
-          if (urlList) {
+          if (urlDoc) {
 
-            res.json(urlList.toJSON());
+            res.json(urlDoc.toJSON());
           } else {
             createShortUrl(url, (err, doc) => {
               if (err) { throw err };
