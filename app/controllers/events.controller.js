@@ -1,4 +1,4 @@
-const ShortUrl = require('../models/shortUrl');
+const { ShortUrl } = require('../models');
 const urlHelper = require('../helpers/url.helper');
 
 
