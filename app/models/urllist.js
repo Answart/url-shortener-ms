@@ -21,11 +21,8 @@ const urlListSchema = new Schema({
   }
 });
 
-const urlListModel = mongoose.model('UrlList', urlListSchema);
-
-
-// middleware -----
-// make sure that short_url is created from original_url
+// The pre-save hook method
+// TODO: make sure that short_url is created from original_url
 urlListSchema.pre('save', function(next) {
   this.short_url = process.env.APP_URL + '/' + createRandomString();
 
@@ -37,4 +34,4 @@ urlListSchema.pre('save', function(next) {
 });
 
 
-module.exports = urlListModel;
+module.exports = mongoose.model('UrlList', urlListSchema);
