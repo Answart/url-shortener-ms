@@ -19,10 +19,8 @@ An app that takes a url and returns a a JSON object with the shortened url. If g
 
 ```json
 {
-  "cuid": "cjrt0zyu60000l7m7jmk9r7xt",
   "original_url": "https://www.google.com",
-  "short_url": "http://localhost:8000/s/6695",
-  "date_created": "2019-02-06T10:03:58.111Z",
+  "short_url": "http://localhost:8000/s/6695"
 }
 ```
 
@@ -52,7 +50,7 @@ Getting Started
 
 Create your own server. I used [**mLab.com**](http://mLab.com). Create a user on that server.
 
-Create your own **.env** file in the root directory with a **MONGODB_URI** which links to your server. Here is an example:
+Create your own **.env** file in the root directory:
 ```bash
 HOST=localhost
 PORT=8000
