@@ -10,7 +10,7 @@
 
 # URL Shortener Micro-service
 
-[![Build Status](https://travis-ci.org/Answart/url-shortener-ms.svg?branch=master)][travis]
+[![Build Status](https://travis-ci.org/Answart/url-shortener-ms.svg)][travis]
 [![dependencies Status](https://david-dm.org/Answart/url-shortener-ms/status.svg)][dependency]
 [![Known Vulnerabilities](https://snyk.io/test/github/Answart/url-shortener-ms/badge.svg)][snyk]
 [![MIT](https://img.shields.io/github/license/Answart/url-shortener-ms.svg)][MIT]
