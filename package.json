@@ -4,7 +4,8 @@
   "description": "An express app that takes a url and returns a a JSON object with the shortened url. If given url is already shortened, user is directed to the link's location.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc mocha --timeout=10000 --exit",
+    "lint": "eslint \"**/*.js\"",
     "start:dev": "node server.js",
     "start": "cross-env NODE_ENV=production node server.js"
   },
@@ -32,5 +33,10 @@
     "express-session": "^1.15.6",
     "mongoose": "^5.4.9",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
