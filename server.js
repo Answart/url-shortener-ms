@@ -6,7 +6,6 @@ const express    = require('express'),
   app            = express(),
   port           = process.env.PORT || 8000,
   expressLayouts = require('express-ejs-layouts'),
-  mongoose       = require('mongoose'),
   bodyParser     = require('body-parser'),
   session        = require('express-session'),
   MongoStore     = require('connect-mongo')(session),
@@ -14,12 +13,7 @@ const express    = require('express'),
   flash          = require('connect-flash');
 
 
-mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
-mongoose.connection.on('error', function(err) {
-    console.error('MongoDB connection error: ' + err);
-    process.exit(-1);
-  }
-);
+const db = require('./app/db')(process.env.MONGODB_URI);
 
 app.set('trust proxy', 1);
 // Set sessions and cookie parser
@@ -29,7 +23,7 @@ app.use(session({
   cookie: { maxAge: 6000 },
   resave: false, // forces session to be saved to store
   saveUninitialized: false, // dont save unmodified
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: new MongoStore({ mongooseConnection: db.connection })
 }));
 app.use(function(req,res,next){
   if(!req.session){
