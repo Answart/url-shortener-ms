@@ -21,5 +21,15 @@ app.use(routes);
 
 
 app.listen(app.get('port'), app.get('host'), error => {
-  console.log('Server running on port ' + app.get('port'));
+  if (error) {
+    console.error('server.listen encountered an error:', error);
+  } else {
+    console.log('----------------------------------------------------');
+    console.log('');
+    console.log('===> 😊  Starting Server . . .');
+    console.log('===>  Environment: ' + process.env.NODE_ENV);
+    console.info(`===>  Server listening @ ${app.get('host')}:${app.get('port')}`);
+    console.log('');
+    console.log('----------------------------------------------------');
+  }
 });
