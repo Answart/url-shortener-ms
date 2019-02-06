@@ -21,6 +21,9 @@ shortUrlSchema.options.toJSON = {
     newRet.id = ret._id;
     delete newRet._id;
     delete newRet.__v;
+    delete newRet.cuid;
+    delete newRet.date_created;
+    delete newRet.id;
 
     return newRet;
   },
