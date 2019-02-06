@@ -6,8 +6,8 @@ module.exports = (uri) => {
 
   mongoose.connection.once('open', () => console.log('Connected to MongoDB!\n'));
 
-  mongoose.connection.on('error', function(err) {
-    console.error('MongoDB connection error: ' + err);
+  mongoose.connection.on('error', (err) => {
+    console.error(`MongoDB connection error: ${err}`);
     process.exit(-1);
   });
 

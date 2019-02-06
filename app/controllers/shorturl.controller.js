@@ -12,7 +12,7 @@ function createShortUrl(req, res) {
     console.error(message);
     res.statusMessage = message;
     res.status(400).render('pages/home', {
-      errors: req.flash('errors')
+      errors: req.flash('errors'),
     });
   }
 
@@ -25,24 +25,24 @@ function createShortUrl(req, res) {
     if (err) {
       returnHome(`An error occured while looking for the shortUrl of '${original_url}'. Try again. Error: ${err}`);
     } else if (!!foundUrl) {
-      console.log(`A shortUrl already exists for '${original_url}' as '${foundUrl.short_url}'.`)
+      console.log(`A shortUrl already exists for '${original_url}' as '${foundUrl.short_url}'.`);
       res.status(200).json(foundUrl.toJSON());
     } else {
       const url = new ShortUrl({ original_url });
 
-      url.save((err, createdUrl) => {
-        if (err) {
-          returnHome(`An error occured while saving new shortUrl from '${original_url}'. Error: ${err}`);
+      url.save((saveErr, createdUrl) => {
+        if (saveErr) {
+          returnHome(`An error occured while saving new shortUrl from '${original_url}'. Error: ${saveErr}`);
         } else if (!createdUrl) {
           returnHome(`An error occured while creating shortUrl from '${original_url}'.`);
         } else {
-          console.log(`Created shortUrl '${createdUrl.short_url}' from shortUrl '${original_url}'.`)
+          console.log(`Created shortUrl '${createdUrl.short_url}' from shortUrl '${original_url}'.`);
           res.status(200).json(createdUrl.toJSON());
         }
-      })
+      });
     }
-  })
-};
+  });
+}
 
 function getShortUrl(req, res) {
   const short_url = req.params['0'];
@@ -55,7 +55,7 @@ function getShortUrl(req, res) {
     console.error(message);
     res.statusMessage = message;
     res.status(400).render('pages/home', {
-      errors: req.flash('errors')
+      errors: req.flash('errors'),
     });
   }
 
@@ -70,14 +70,14 @@ function getShortUrl(req, res) {
     } else if (!foundUrl || !foundUrl.original_url) {
       returnHome(`No url associated with the shortUrl '${fullPath}'.`);
     } else {
-      console.log(`Found url '${foundUrl.original_url}' from shortUrl '${short_url}'. Redirecting user.`)
+      console.log(`Found url '${foundUrl.original_url}' from shortUrl '${short_url}'. Redirecting user.`);
       res.status(200).redirect(foundUrl.original_url);
     }
-  })
-};
+  });
+}
 
 
 module.exports = {
   createShortUrl,
-  getShortUrl
+  getShortUrl,
 };

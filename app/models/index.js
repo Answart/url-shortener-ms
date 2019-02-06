@@ -2,5 +2,5 @@ const ShortUrl = require('./shortUrl');
 
 
 module.exports = {
-  ShortUrl
-}
+  ShortUrl,
+};

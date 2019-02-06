@@ -4,5 +4,5 @@ const ShortUrlController = require('./shorturl.controller');
 
 module.exports = {
   MainController,
-  ShortUrlController
-}
+  ShortUrlController,
+};

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 const cuid = require('cuid');
 const { createRandomString } = require('../utils');
 
@@ -10,25 +10,33 @@ const shortUrlSchema = new Schema({
   original_url:     { type: String, required: true },
   short_url:        { type: String, required: false },
 
-  date_created:     { type: 'Date', default: (new Date().toISOString()), required: true }
-}, {
-  toJSON: {
-    transform: function (doc, ret, options) {
-      delete ret._id;
-      delete ret.__v;
-      return ret;
-    }
-  }
+  date_created:     { type: 'Date', default: (new Date().toISOString()), required: true },
 });
+
+// Schema options method to allow .toJSON fn on returned docs
+shortUrlSchema.options.toJSON = {
+  transform: function(doc, ret, options) {
+    const newRet = ret;
+
+    newRet.id = ret._id;
+    delete newRet._id;
+    delete newRet.__v;
+
+    return newRet;
+  },
+};
 
 // The pre-save hook method
 // TODO: make sure that short_url is created from original_url
-shortUrlSchema.pre('save', function(next) {
-  this.short_url = process.env.PUBLIC_URL + '/s/' + createRandomString();
+shortUrlSchema.pre('save', (next) => {
+  const shortUrl = this;
 
-  if (!user.cuid) {
-    user.cuid = cuid();
-  };
+  const shortened = `${process.env.PUBLIC_URL}/s/${createRandomString()}`;
+  shortUrl.short_url = shortened;
+
+  if (!shortUrl.cuid) {
+    shortUrl.cuid = cuid();
+  }
 
   next();
 });

@@ -24,13 +24,15 @@ module.exports = (store) => {
     cookie: { maxAge: 6000 },
     resave: false, // forces session to be saved to store
     saveUninitialized: false, // dont save unmodified
-    store
+    store,
   }));
-  app.use(function(req,res,next){
-    if(!req.session){
-      return next(new Error('Oh no! No session found.')) //handle error
+  app.use((req, res, next) => {
+    if (!req.session) {
+      // handle error
+      return next(new Error('Oh no! No session found.'));
     }
-    next();
+
+    return next();
   });
   app.use(flash());
 
