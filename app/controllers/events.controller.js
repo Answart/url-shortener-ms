@@ -1,5 +1,6 @@
 const { ShortUrl } = require('../models');
 const urlHelper = require('../helpers/url.helper');
+const { isValidUrl } = require('../utils');
 
 
 function createShortUrl(original_url, cb) {
@@ -19,7 +20,7 @@ module.exports = {
   showUrl: (req, res) => {
     var url = req.params['0'];
     var isAppsShortenedUrl = urlHelper.isAppUrl(url);
-    var isValidUrl = urlHelper.isValidUrl(url);
+    var validUrl = isValidUrl(url);
 
     function returnHome(err) {
       req.flash('errors', err);
@@ -39,7 +40,7 @@ module.exports = {
         }
       })
     } else {
-      if (!isValidUrl) {
+      if (!validUrl) {
         returnHome(`'${url}' is not a valid url. Try again.`)
       } else {
         ShortUrl.findOne({ original_url: url }, (err, urlDoc) => {
