@@ -14,17 +14,8 @@ function createShortUrl(url, cb) {
   })
 }
 
-function show404(req, res) {
-  req.flash('errors', 'The route you entered does not exist.');
-
-  res.render('pages/home', {
-    errors: req.flash('errors')
-  });
-}
-
 
 module.exports = {
-  show404: show404,
   showUrl: (req, res) => {
     var url = req.params['0'];
     var isAppsShortenedUrl = urlHelper.isAppUrl(url);

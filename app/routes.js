@@ -6,7 +6,7 @@ const eventsController = require('./controllers/events.controller');
 
 router.get('/',      mainController.showHome);
 router.get('/new/*', eventsController.showUrl);
-router.get('*',      eventsController.show404);
+router.get('*',      mainController.show404);
 
 
 module.exports = router;
