@@ -18,12 +18,10 @@ shortUrlSchema.options.toJSON = {
   transform: function(doc, ret, options) {
     const newRet = ret;
 
-    newRet.id = ret._id;
     delete newRet._id;
     delete newRet.__v;
     delete newRet.cuid;
     delete newRet.date_created;
-    delete newRet.id;
 
     return newRet;
   },
@@ -31,15 +29,12 @@ shortUrlSchema.options.toJSON = {
 
 // The pre-save hook method
 // TODO: make sure that short_url is created from original_url
-shortUrlSchema.pre('save', (next) => {
+shortUrlSchema.pre('save', function saveHook(next) {
   const shortUrl = this;
+  const stringey = createRandomString();
+  const shortened = `${process.env.PUBLIC_URL}/s/${stringey}`;
 
-  const shortened = `${process.env.PUBLIC_URL}/s/${createRandomString()}`;
   shortUrl.short_url = shortened;
-
-  if (!shortUrl.cuid) {
-    shortUrl.cuid = cuid();
-  }
 
   next();
 });
