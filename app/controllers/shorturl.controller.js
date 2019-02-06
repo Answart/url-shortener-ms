@@ -18,6 +18,22 @@ function createShortUrl(req, res) {
     });
   }
 
+  function resJson({ message, doc }) {
+    console.info(message);
+
+    req.flash('info', message);
+    req.flash('success', doc);
+
+    res.statusMessage = message;
+    res.status(200).render('pages/home', {
+      errors: [],
+      info: {
+        message: req.flash('info'),
+        json: req.flash('success'),
+      },
+    });
+  }
+
   if (!validUrl) {
     resError(`Given url '${original_url}' is not a valid url to shorten.`);
   }
@@ -27,8 +43,10 @@ function createShortUrl(req, res) {
     if (err) {
       resError(`An error occured while looking for the shortUrl of '${original_url}'. Try again. Error: ${err}`);
     } else if (!!foundUrl) {
-      console.log(`A shortUrl already exists for '${original_url}' as '${foundUrl.short_url}'.`);
-      res.status(200).json(foundUrl.toJSON());
+      resJson({
+        message: `A shortUrl already exists for '${original_url}' as '${foundUrl.short_url}'.`,
+        doc: JSON.stringify(foundUrl.toJSON()),
+      });
     } else {
       const url = new ShortUrl({ original_url });
 
@@ -38,8 +56,10 @@ function createShortUrl(req, res) {
         } else if (!createdUrl) {
           resError(`An error occured while creating shortUrl from '${original_url}'.`);
         } else {
-          console.log(`Created shortUrl '${createdUrl.short_url}' from shortUrl '${original_url}'.`);
-          res.status(200).json(createdUrl.toJSON());
+          resJson({
+            message: `Created shortUrl '${createdUrl.short_url}' from shortUrl '${original_url}'.`,
+            doc: JSON.stringify(createdUrl.toJSON()),
+          });
         }
       });
     }
