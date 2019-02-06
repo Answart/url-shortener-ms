@@ -1,7 +1,7 @@
 {
   "name": "url-shortener-ms",
   "version": "1.0.0",
-  "description": "An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.",
+  "description": "An express app that takes a url and returns a a JSON object with the shortened url. If given url is already shortened, user is directed to the link's location.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
