@@ -14,6 +14,7 @@ const express    = require('express'),
 
 const db = require('./app/db')(process.env.MONGODB_URI);
 const store = require('./app/store')(db.connection);
+const routes = require('./app/routes');
 
 app.set('trust proxy', 1);
 // Set sessions and cookie parser
@@ -44,7 +45,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set routes
-app.use(require('./app/routes'));
+app.use(routes);
 
 
 app.listen(port, function() {
