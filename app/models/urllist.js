@@ -1,9 +1,15 @@
-const mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const cuid = require('cuid');
+
 
 const urlListSchema = new Schema({
-  original_url: String,
-  short_url: String
+  cuid:             { type: String, default: cuid(), required: true },
+
+  original_url:     { type: String, required: true },
+  short_url:        { type: String, required: false },
+
+  date_created:     { type: 'Date', default: (new Date().toISOString()), required: true }
 }, {
   toJSON: {
     transform: function (doc, ret, options) {
@@ -26,6 +32,11 @@ function shortenUrl() {
 // make sure that short_url is created from original_url
 urlListSchema.pre('save', function(next) {
   this.short_url = process.env.APP_URL + '/' + shortenUrl();
+
+  if (!user.cuid) {
+    user.cuid = cuid();
+  };
+
   next();
 });
 
