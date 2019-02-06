@@ -1,8 +1,8 @@
 const MainController = require('./main.controller');
-const EventsController = require('./events.controller');
+const ShortUrlController = require('./shorturl.controller');
 
 
 module.exports = {
   MainController,
-  EventsController
+  ShortUrlController
 }
