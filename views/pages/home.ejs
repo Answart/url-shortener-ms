@@ -6,6 +6,19 @@
   </div>
 <% } %>
 
+<% if (!!info.json) { %>
+  <div>
+    <h2>Output</h2>
+    <% if (!!info.message) { %>
+      <p><%= info.message %></p>
+    <% } %>
+    <code>
+      <%= info.json %>
+    </code>
+  </div>
+  <br />
+<% } %>
+
 <h2>User stories:</h2>
 <ul>
   <li>I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.</li>
