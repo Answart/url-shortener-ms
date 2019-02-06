@@ -15,20 +15,22 @@
 [![Known Vulnerabilities](https://snyk.io/test/github/Answart/url-shortener-ms/badge.svg)][snyk]
 [![MIT](https://img.shields.io/github/license/Answart/url-shortener-ms.svg)][MIT]
 
-An app that listens for a URL after the /new/ path and returns a JSON object with the original_url and short_url. If URL in path is already shortened, directs user to link's location.
+An app that takes a url and returns a a JSON object with the shortened url. If given url is already shortened, user is directed to the link's location.
 
-```shell
+```json
 {
-  "original_url":	"https://www.google.com",
-  "short_url": "https://answart-url-shortener-ms.herokuapp.com/1059"
+  "cuid": "cjrt0zyu60000l7m7jmk9r7xt",
+  "original_url": "https://www.google.com",
+  "short_url": "http://localhost:8000/s/6695",
+  "date_created": "2019-02-06T10:03:58.111Z",
 }
 ```
 
 User Stories
 ------------
 
-- I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
-- When I visit that shortened URL, it will redirect me to my original link.
+- I can pass a URL as a parameter and I will receive a shortened url in the JSON response.
+- When I visit that shortened url, it will redirect me to my original link.
 
 Tech Stack and Key Packages
 ---------------------------
@@ -48,43 +50,35 @@ Tech Stack and Key Packages
 Getting Started
 ---------------
 
-Create your own server. I used mLab.com.
+Create your own server. I used [**mLab.com**](http://mLab.com). Create a user on that server.
 
-Create a user on that server.
-
-Create your own .env file in the root directory with a DB_URI which links to your server. Here is an example:
-```shell
+Create your own **.env** file in the root directory with a **MONGODB_URI** which links to your server. Here is an example:
+```bash
+HOST=localhost
 PORT=8000
-DB_URI="mongodb://<dbuser>:<dbpassword>@ds223738.mlab.com:23738/answart-url-shortener-ms"
-SECRET="my-super-secret"
-APP_URL="http://answart-url-shortener-ms.herokuapp.com"
+SECRET=my-super-secret
+MONGODB_URI=mongodb://<dbuser>:<dbpassword>@<mlabdatabase>
+PUBLIC_URL=http://localhost:8000
 ```
 
-Install dependencies then launch app @ [http://localhost:8000](http://localhost:8000)
-```shell
+Install dependencies then launch app @ [**localhost:8000**](http://localhost:8000)
+```bash
 $ npm install
-$ npm start
+$ npm run start:dev
 ```
 
 Example routes:
-```
-http://localhost:8000
-http://localhost:8000/new/https://www.google.com
-http://localhost:8000/new/http://answart-url-shortener-ms.herokuapp.com/6170
-```
 
-View [app in production](https://answart-url-shortener-ms.herokuapp.com) (if still active)
+* http://localhost:8000
+* http://localhost:8000/new/https://www.google.com
+* http://localhost:8000/s/6695
 
-```
-https://answart-url-shortener-ms.herokuapp.com
-https://answart-url-shortener-ms.herokuapp.com/new/https://www.google.com
-https://answart-url-shortener-ms.herokuapp.com/new/http://answart-url-shortener-ms.herokuapp.com/6170
-```
+View [app in production](https://answart-url-shortener-ms.herokuapp.com) (if still live)
 
 NPM Commands
 ------------
 
 | Command | Description |
 | ------- | ----------- |
-| npm install | Install dependencies in package.json |
-| npm start | Start server @ **localhost:8000** |
+| npm install | Install dependencies |
+| npm run start:dev | Launch app locally @ **[localhost:8000](http://localhost:8000)** |
